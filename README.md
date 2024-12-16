@@ -74,9 +74,3 @@ The project is organized into the following files and folders:
 3. Validation of models using reconstructed GP predictions.
 4. Comprehensive analysis and visualization of results, including spatial distributions and problematic node identification.
 
----
-
-## **Usage Instructions**
-1. Clone the repository:
-   ```bash
-   git clone <repository_url>
