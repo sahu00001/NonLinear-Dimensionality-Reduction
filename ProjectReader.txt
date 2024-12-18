@@ -1,0 +1,55 @@
+##########Neural Network(Autoencoder) for storm surge predictions over 3000 Locations############
+This project has following files and folders:
+Code: Which contains centroid_Process, Model_Exploration, Optuna_hyperparmetrization, Plots, Trials_Model and problematiclocationcalculation.py
+ 
+Centroid_Process - This folder has code for centroid calculation and validation 
+Model_Exploration - This folder contains code to chcek model summary(Model_Summary.py), extraction of Latent and reconstruction data from decoder( Latent_reconstruction_Extraction.py) and Extrcation of predictions from latent through reconstructionusing decoder(Latent_to_Prediction_and_Reconstruction)
+Optuna_Hyperparametrization - This contains code(Python files and batch files) for Optuna Hyperparametrization for all the activation functions tanh, sigmoid, selu, softplus
+Plots - This folder contains code for all the plots presented in this thesis like activation functions, PCA AE Reconstruction and Gp predictions, Database Plots and Spatial_Distribution for Specific Regions.
+Trials_Model - This folder contains code(Python files and Batch Files) for all the trials selected from Optuna results.
+problematiclocationcalculation.py - This file contains code for problematic node calculation and its visualisation
+
+DataReconstructedfilesafterpredictions: This folder contains data files after reconstruction of GP predictions
+Figures: this folder contains all the figures mentioned in this thesis
+Optuna_Trial_Results: This folder contains results obtained for all the activation functions from Optuna 
+Literature Review: This folder contains all the refrences used for this research
+
+Architecture_and_Validationmetric_Results.CSV: This contains the architecture of all the models explored in the thesis along with all the hyperparameters and also tells about the model further used for validation. Laos contains the golbal validation metrics.
+
+ClusterNum_latlong_nodeindices.CSV: This contains 3000 clusters representatives with their indices, lat/long values and their distance from the centroid of the cluster. 
+
+Models: This folder contains all the models
+
+Optuna trial Results: This conatins txt files from optuna hyperparametrization
+
+Figures: This consist of all the figures used in the thesis
+
+############################Project Execution########################
+Note: To run any code please chcek the data and model dependencies , make sure required model or data files are in the same directory
+To run the project start with 
+*Code ----> Model_Exploration -------> Model_Summary(this will give you the summary of the model like layers, neurons in each layer, weights and biases)(run in local computer)
+Dependencies: Make sure you copy the desired model you want from "Models" to the same location as Model_Summary
+
+(**** to run all the files in the code specific "Model" should be there in the same folder)
+
+*Centroid Process has two files centroid and centroidvalidation..... centroid has dependencies (selected535STORMS_NACCS.mat and NACCS.mat data file)(run in local computer)
+centroidvalidation is running the centroid file twice and comparing the output to chcek the similarities
+
+*Optuna_Hyperparametrization and Trials_Model - Files in these two folders are run in supercomputer Schooner. It contains both python files and batch files for each file
+Upload both the python file and the batch file and the data and submit the job
+
+* Plots are to be run in local computer
+
+#############################Project Flow##################################
+Fisrt 3000 locations are extracted from 12603 using centroid process for which centroid files can be used
+Using Optuna frame work the architecture of the models are decided so for each activation function optuna for run for 150 trials
+The least loss value model was selected and the model was run individually keeping 5000 epochs by default and implementing early stopping upto 50 patience
+The model was saved and latent space for both training and testing was extracted from the model
+The latent space was further inserted into the surrogate model for predictions
+The predictions of test from surrogate model was inserted into the decoder for the predictions for 3000 locations  
+
+
+
+
+
+
